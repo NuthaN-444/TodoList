@@ -56,11 +56,11 @@ const TodoLists = () => {
      {todoList && todoList.length > 0 ? (
         todoList.map((item) => (
           <div key={item.id} className="todo-item">
-            <input type="checkbox" onChange={() => {
+            <input title='Mark as done' type="checkbox" className='Check-Box' onChange={() => {
               todoCompletedHandle(item.id)
               soundPlay(item.completedSound)
             }} checked={item.todoCompleted} />
-            <p className='todo-title' style={{ textDecoration: item.todoCompleted ? "line-through" : "none" }}>{item.todoTitle}</p>
+            <p className='todo-title' style={{ textDecoration: item.todoCompleted ? "line-through" : "none" }} >{item.todoTitle}</p>
             <span>{item.todoCompleted ? "✅ Done" : "⏳ Pending"}</span>
             <i className="fa-solid fa-trash Delete-btn" title='Delete All' onClick={() => deleteTodo(item.id)}></i>
           </div>

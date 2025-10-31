@@ -122,12 +122,13 @@ body {
     background-color: rgba(133, 133, 133, 0.39);
     border-radius:40px ;
 }
-.todo-item input{
-    size: 40px;
+.todo-item .Check-Box{
+    size: 50px;
     cursor: pointer;
 }
 
 .todo-item .todo-title {
+    margin-left: 30px;
     text-align: start;
     margin-right: 50%;
     color: white;

@@ -1,0 +1,105 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background-color:rgb(46, 46, 46);
+}
+
+.Adding-Todo-List-Div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(133, 133, 133, 0.459);
+    width: 700px;
+    height: 70px;
+    border-radius: 50px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    padding-right: 20px;
+}
+
+.Adding-Todo-List-Div input {
+    width: 70%;
+    height: 70%;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    padding-left: 50px;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+}
+
+.Adding-Todo-List-Div i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    border-radius: 50%;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+.Adding-Todo-List-Div i:hover {
+    background-color: rgba(255, 255, 255, 0.493);
+}
+
+
+
+.text--my-todo {
+    position: absolute;
+    top: 20%;
+    left: 47%;
+    color: white;
+}
+
+.todo-lists-div {
+    width: 700px;
+    height: 700px;
+    border-radius: 50px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+    padding-right: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: grey transparent;
+    scroll-behavior: smooth;
+}
+
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 10px;
+    width: 83%;
+    height: 10%;
+    background-color: rgba(133, 133, 133, 0.39);
+    border-radius:40px ;
+}
+.todo-item input{
+    size: 40px;
+    cursor: pointer;
+}
+
+.todo-item .todo-title {
+    text-align: start;
+    margin-right: 50%;
+    color: white;
+    font-size: 20px;
+}
+
+.todo-item span {
+    color: white;
+
+}

@@ -58,6 +58,41 @@ body {
     color: white;
 }
 
+.DeleteAll-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    border-radius: 50%;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+.DeleteAll-btn:hover {
+    background-color: rgba(255, 255, 255, 0.493);
+}
+
+.Delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+    border-radius: 50%;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+.Delete-btn:hover {
+    background-color: rgba(255, 255, 255, 0.493);
+}
+
 .todo-lists-div {
     width: 700px;
     height: 700px;
@@ -102,4 +137,13 @@ body {
 .todo-item span {
     color: white;
 
+}
+
+
+.Empty-Todo{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 15%;
+    top: 10%;
 }

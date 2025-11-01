@@ -13,17 +13,13 @@ const AddingTodo = () => {
             id: Date.now(),
             todoTitle : todoTitle,
             todoCompleted : false,
+            pinTodo:false
         };
         setTodoList((prev) => ([...prev,newTodo]));
 
         setTodoTitle("")
     }
 
-    const CompletedTodo = (id) => {
-      setTodoList((todoList) => todoList.map((singletodo) => {
-        singletodo === id ?{...singletodo, CompletedTodo:!singletodo.CompletedTodo}:singletodo
-      }))
-    }
 
     const deleteTodoTitle  = () => {
         setTodoTitle("")

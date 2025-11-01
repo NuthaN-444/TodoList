@@ -16,10 +16,10 @@ export const TodoContextProvider = ({children}) => {
         try {
             return saved
               ? JSON.parse(saved)
-              : [{ id: 1, todoTitle: "Learn React", todoCompleted: false }];
+              : [{}];
         }catch (error) {
             console.error("Invalid JSON in localStorage:", error);
-            return [{ id: 1, todoTitle: "Learn React", todoCompleted: false }];
+            return [{}];
         }     
 });
         // Storing the todolist when the todo list are added

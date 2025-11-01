@@ -9,7 +9,6 @@ const TodoLists = () => {
 
 
 
-
   // when Todo added to list automatically scrolls to last todo
   useEffect(() => {
     divRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -25,7 +24,6 @@ const TodoLists = () => {
       item.id === id ? {...item,todoCompleted:!item.todoCompleted} : item
     );
     setTodoList(updatedTodos);
-
   }
 
 
@@ -39,10 +37,23 @@ const TodoLists = () => {
   }
 
 
+
+// Single Deletion
   const deleteTodo = (id) => {
     const updatedTodos = todoList.filter((item) => item.id !== id)
     setTodoList(updatedTodos)
   }
+
+
+// speaker
+  const speakerTheTitle = (singleTitle) => {
+      const speech = new SpeechSynthesisUtterance(singleTitle);
+      speech.lang = "en-US";
+      speech.rate = 1.5;
+      window.speechSynthesis.speak(speech);
+  }
+
+
 
 
 
@@ -54,17 +65,19 @@ const TodoLists = () => {
 
     <>
      {todoList && todoList.length > 0 ? (
-        todoList.map((item) => (
-          <div key={item.id} className="todo-item">
-            <input title='Mark as done' type="checkbox" className='Check-Box' onChange={() => {
-              todoCompletedHandle(item.id)
-              soundPlay(item.completedSound)
-            }} checked={item.todoCompleted} />
-            <p className='todo-title' style={{ textDecoration: item.todoCompleted ? "line-through" : "none" }} >{item.todoTitle}</p>
-            <span>{item.todoCompleted ? "✅ Done" : "⏳ Pending"}</span>
-            <i className="fa-solid fa-trash Delete-btn" title='Delete All' onClick={() => deleteTodo(item.id)}></i>
-          </div>
-        ))
+        todoList.map((item) => {
+                return (
+                <div key={item.id} className="todo-item">
+                  <input title='Mark as done' type="checkbox" className='Check-Box' onChange={() => {
+                    todoCompletedHandle(item.id)
+                    soundPlay(item.completedSound)
+                  }} checked={item.todoCompleted} />
+                  <p className='todo-title' style={{ textDecoration: item.todoCompleted ? "line-through" : "none" }} >{item.todoTitle}</p>
+                  <span style={{cursor:'default'}}>{item.todoCompleted ? "✅" : "⏳"}</span>
+                  <i class="fa-solid fa-volume-high Speaker-btn" onClick={() => speakerTheTitle(item.todoTitle)}></i>
+                  <i className="fa-solid fa-trash Delete-btn" title='Delete All' onClick={() => deleteTodo(item.id)}></i>
+                </div>
+              )})
       ) : (
         <img src="/empty.png" alt="No todos yet — add one above!" className='Empty-Todo'/>
       )}</>

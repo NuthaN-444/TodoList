@@ -12,7 +12,7 @@ body {
     align-items: center;
     justify-content: space-around;
     background-color: rgba(133, 133, 133, 0.459);
-    width: 700px;
+    width: 900px;
     height: 70px;
     border-radius: 50px;
     position: absolute;
@@ -93,15 +93,32 @@ body {
     background-color: rgba(255, 255, 255, 0.493);
 }
 
+.Speaker-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+    border-radius: 50%;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.Speaker-btn:hover {
+        background-color: rgba(255, 255, 255, 0.493);
+}
+
 .todo-lists-div {
-    width: 700px;
+    width: 870px;
     height: 700px;
     border-radius: 50px;
     position: absolute;
     top: 25%;
     left: 50%;
     transform: translate(-50%);
-    padding-right: 20px;
+    padding-right: 40px;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-width: thin;
@@ -128,6 +145,7 @@ body {
 }
 
 .todo-item .todo-title {
+    width: 200px;
     margin-left: 30px;
     text-align: start;
     margin-right: 50%;
@@ -145,6 +163,6 @@ body {
     width: 500px;
     height: 500px;
     position: absolute;
-    left: 15%;
+    left: 20%;
     top: 10%;
 }

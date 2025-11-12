@@ -4,7 +4,8 @@ import {UseTodoContext} from '../context/TodoContext'
 const AddingTodo = () => {
     const {todoList,setTodoList} = UseTodoContext();
     const [todoTitle,setTodoTitle] = useState("")
-
+    const {isUserLogin,setIsUserLogin} = UseTodoContext();
+        
 
     const addTodoTitle = (todoTitle) => {
         if(todoTitle=="") return
@@ -26,16 +27,21 @@ const AddingTodo = () => {
     }
 
 
+
+
   useEffect(() => {
     console.log("Updated todo list:", todoList);
   }, [todoList]);
 
   return (
-    <div className='Adding-Todo-List-Div'>
-    <input type="text" placeholder='Write Todo' value={todoTitle} onChange={(e) => setTodoTitle(e.target.value)}/>
-    <i className="fa-solid fa-up-long" title="Add To List" onClick={() => addTodoTitle(todoTitle)}></i>
-    <i className="fa-solid fa-eraser" title='Delete' onClick={() => deleteTodoTitle()}></i>
-    </div>
+    <>
+      <button className='Log-out' onClick={() => (setIsUserLogin(false))}>Log out</button>
+      <div className='Adding-Todo-List-Div'>
+      <input type="text" placeholder='Write Todo' value={todoTitle} onChange={(e) => setTodoTitle(e.target.value)}/>
+      <i className="fa-solid fa-up-long" title="Add To List" onClick={() => addTodoTitle(todoTitle)}></i>
+      <i className="fa-solid fa-eraser" title='Delete' onClick={() => deleteTodoTitle()}></i>
+      </div>
+    </>
   )
 }
 

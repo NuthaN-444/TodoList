@@ -9,6 +9,20 @@ const TodoContext = createContext();
 export const TodoContextProvider = ({children}) => {
 
     const completedSound = new Audio("/bell-transition-141421.mp3")
+    let [isUserLogin,setIsUserLogin] = useState(() => {
+        let status = localStorage.getItem("isUserLogin");
+        try{
+            return status ? JSON.parse(status) : false;
+        } catch {
+            console.log("invalid json in localstorage",error);
+            return false;
+        }
+    });
+
+    useEffect(() => {
+      localStorage.setItem("isUserLogin",JSON.stringify(isUserLogin))
+    },[isUserLogin])
+
 
 
     // Getting Todo Datas From localStorage
@@ -28,7 +42,6 @@ export const TodoContextProvider = ({children}) => {
     useEffect(() => {
         if(todoList.length === 0) return;
          localStorage.setItem("AllTodoData",JSON.stringify(todoList));
-         
     },[todoList])
 
     useEffect(() => {
@@ -45,7 +58,7 @@ export const TodoContextProvider = ({children}) => {
     const [whichFilter,setWhichFilter] = useState("all");
 
     return (
-         <TodoContext.Provider value={{todoList,setTodoList,completedSound,displayCurrentTodosFilter,setDisplayCurrentTodosFilter,pinedTodoList,setPinedTodoList,notCompletedTodoList,setNotCompletedTodoList,completedTodoList,setCompletedTodoList,whichFilter,setWhichFilter}} >
+         <TodoContext.Provider value={{todoList,setTodoList,completedSound,displayCurrentTodosFilter,setDisplayCurrentTodosFilter,pinedTodoList,setPinedTodoList,notCompletedTodoList,setNotCompletedTodoList,completedTodoList,setCompletedTodoList,whichFilter,setWhichFilter,isUserLogin,setIsUserLogin}} >
             {children}
         </TodoContext.Provider>
     )

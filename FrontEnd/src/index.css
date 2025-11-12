@@ -53,7 +53,24 @@ body {
     background-color: rgba(255, 255, 255, 0.493);
 }
 
-
+.Log-out {
+    width: 130px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.329);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-weight: bolder;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.Log-out:hover {
+    background-color: white;
+    color: black;
+}
 
 /* --------------TODO LISTS ----------- */
 
@@ -137,7 +154,7 @@ body {
     padding-right: 10%;
     margin-top: 10px;
     width: 83%;
-    height: 10%;
+    height: 13%;
     background-color: rgba(133, 133, 133, 0.39);
     border-radius:40px ;
     transition: all 0.3s;
@@ -209,4 +226,162 @@ body {
 .Filter-bar .Filter-options:hover {
     color: black;
     background-color: #ffffffe0;
+}
+
+
+
+
+/* -------Login Form ------  */
+
+
+
+.login-page-div {
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    text-align: center;
+    transition: all 0.2s ease ;
+}
+
+.login-page-div h3 {
+    color: #111111a8;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    top: 10%;
+}
+form {
+    position: relative;
+    top: 20%;
+}
+.email-password-h4 {
+    color: rgba(0, 0, 0, 0.514);
+}
+
+.input-design {
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+    padding-left: 30px;
+    font-size: 17px;
+}
+
+.email-block {
+    display: inline;
+    position: relative;
+}
+
+.email-block h4{
+    position: relative;
+    right:25% ;
+}
+.password-block{
+    display: inline;
+}
+.password-block h4{
+    position: relative;
+    right:29% ;
+}
+
+form p {
+    color: red;
+    display: none;
+}
+.submit-btn{
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    width: 330px;
+    height: 55px;
+    border-radius: 50px;
+    background-color: black;
+    position: relative;
+    top: 30px;
+    border: 2px solid white;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: transparent;
+    border: 2px solid #111111;
+    color:black;
+}
+
+.forgot-password {
+    position: relative;
+    left: 37%;
+    color: rgba(0, 0, 0, 0.575);
+    font-weight: 100;
+    width: fit-content;
+    cursor: pointer;
+}
+.forgot-password:hover {
+    border-bottom: 1px solid rgb(8, 8, 8);
+}
+
+.dont-have-account {
+    margin-top: 10px;
+}
+.dont-have-account:hover {
+    text-decoration: underline;
+}
+       /* -------Sign up Page --------- */
+
+
+
+.Signup-page-div {
+    border-radius: 10px;
+    width: 400px;
+    height: 670px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    text-align: center;
+    box-shadow: 3px 3px 40px rgba(12, 12, 12, 0.89);
+    transition: all 0.2s ease ;
+}
+
+.Signup-page-div h3 {
+    color: #111111a8;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    top: 10%;
+
+}
+
+.UserName-block {
+    display: inline;
+    position: relative;
+    color:rgba(0, 0, 0, 0.589);
+}
+.UserName-block h4 {
+    position: relative;
+    left: -30%;
+}
+
+
+.confirm-password-block {
+    display: inline;
+    position: relative;
+    color: white;
+}
+
+.confirm-password-block h4 {
+    position: relative;
+    left: -22%;
+}
+
+.already-have-account {
+    margin-top: 40px;
+}
+
+.already-have-account:hover {
+    text-decoration: underline;
 }

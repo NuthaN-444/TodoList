@@ -39,7 +39,7 @@ const AddingTodo = () => {
       <div className='Adding-Todo-List-Div'>
       <input type="text" placeholder='Write Todo' value={todoTitle} onChange={(e) => setTodoTitle(e.target.value)}/>
       <i className="fa-solid fa-up-long" title="Add To List" onClick={() => addTodoTitle(todoTitle)}></i>
-      <i className="fa-solid fa-eraser" title='Delete' onClick={() => deleteTodoTitle()}></i>
+      <i className="fa-solid fa-eraser" title='Erase' onClick={() => deleteTodoTitle()}></i>
       </div>
     </>
   )

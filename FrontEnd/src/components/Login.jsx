@@ -50,14 +50,14 @@ const Login = () => {
       <form onSubmit={submitHandler}>
           <div className='email-block'>
             <h4 className='email-password-h4'>Email Address</h4>
-            <input value={emailValue} onChange={(e) => {setEmailValue(e.target.value)}} type="text"className='input-design' id='email-value'/><br/>
+            <input name='email' value={emailValue} onChange={(e) => {setEmailValue(e.target.value)}} type="email"className='input-design' id='email-value'/><br/>
             <p className='email-error'>Enter a valid email</p>
           </div>
           <br />
           <br />
           <div className='password-block'>
             <h4 className='email-password-h4'>Password</h4>
-            <input value={passwordValue} onChange={(e) => {setPasswordValue(e.target.value)}} type="password" className='input-design'/><br/>
+            <input name='password' value={passwordValue} onChange={(e) => {setPasswordValue(e.target.value)}} type="password" className='input-design'/><br/>
             <p className='password-error'>Incorrect password</p>
           </div><br />
           <input type="submit" className='submit-btn' value={"Login"}/><br/><br/><br/>

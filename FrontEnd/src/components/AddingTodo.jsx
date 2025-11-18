@@ -1,24 +1,29 @@
 import React, { useContext, useState ,useEffect } from 'react'
 import {UseTodoContext} from '../context/TodoContext'
+import axios from "axios"
 
 const AddingTodo = () => {
-    const {todoList,setTodoList} = UseTodoContext();
+    const {todoList,setTodoList,isUserLogin,setIsUserLogin,UserEmail,setUserEmail,fetchTodos} = UseTodoContext();
     const [todoTitle,setTodoTitle] = useState("")
-    const {isUserLogin,setIsUserLogin} = UseTodoContext();
         
 
-    const addTodoTitle = (todoTitle) => {
+    const addTodoTitle = async(todoTitle) => {
+
+
         if(todoTitle=="") return
         
-        const newTodo = {
-            id: Date.now(),
-            todoTitle : todoTitle,
-            todoCompleted : false,
-            pinTodo:false
-        };
-        setTodoList((prev) => ([...prev,newTodo]));
 
-        setTodoTitle("")
+        try{
+          const response = await axios.post("http://localhost:5000/api/todos",{todoTitle,todoCompleted:false,pinTodo:false,email:UserEmail});
+          fetchTodos();
+          console.log("Server response:",response.data);
+        } catch (error) {
+          console.log("Axios login error : ",error);
+          alert("Something went wrong!");
+        }
+
+
+        setTodoTitle("");
     }
 
 
@@ -35,7 +40,10 @@ const AddingTodo = () => {
 
   return (
     <>
-      <button className='Log-out' onClick={() => (setIsUserLogin(false))}>Log out</button>
+      <button className='Log-out' onClick={() => {
+        setIsUserLogin(false)
+        setUserEmail(null);
+        }}>Log out</button>
       <div className='Adding-Todo-List-Div'>
       <input type="text" placeholder='Write Todo' value={todoTitle} onChange={(e) => setTodoTitle(e.target.value)}/>
       <i className="fa-solid fa-up-long" title="Add To List" onClick={() => addTodoTitle(todoTitle)}></i>

@@ -7,7 +7,7 @@ import axios from 'axios'
 
 
 const Login = () => {
-  const {isUserLogin,setIsUserLogin} = UseTodoContext();
+  const {isUserLogin,setIsUserLogin,fetchTodos,setUserEmail } = UseTodoContext();
   const navigate = useNavigate();
 
  const [emailValue,setEmailValue] = useState("")
@@ -23,7 +23,10 @@ const Login = () => {
       console.log("Server response:",response.data);
       if(response.data === "Login Successful"){
         setIsUserLogin(true);
+        setUserEmail(emailValue);  
         navigate("/");
+        fetchTodos();
+        window.location.reload();
       } else {
         alert(response.data);
       }

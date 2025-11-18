@@ -7,18 +7,6 @@ router.get("/",async(req,res) => {
     res.send("from /signup");
 });
 
-// router.get("/:id",async(req,res) => {
-//     res.json(message,"from /signup/:",req.params.id);
-// });
-
-// router.get("/all/" , async(req,res) => {
-//     try {
-//         const CreatingUser = await Signup.find({});
-//         res.json(CreatingUser);
-//     } catch (error) {
-//         console.log("Error",error);
-//     }
-// });
 
 //creating
 router.post("/" , async(req,res) => {

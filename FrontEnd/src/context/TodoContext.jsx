@@ -1,67 +1,98 @@
-import {useState , createContext , useContext, useEffect } from 'react';
-
-
+import { useState, createContext, useContext, useEffect } from "react";
+import axios from "axios";
 
 const TodoContext = createContext();
 
+export const TodoContextProvider = ({ children }) => {
+  const completedSound = new Audio("/bell-transition-141421.mp3");
+
+  // USER EMAIL
+  const [UserEmail, setUserEmail] = useState(
+    localStorage.getItem("userEmail") || ""
+  );
 
 
-export const TodoContextProvider = ({children}) => {
+  // LOGIN STATUS
+  const [isUserLogin, setIsUserLogin] = useState(() => {
+    const status = localStorage.getItem("isUserLogin");
+    try {
+      return status ? JSON.parse(status) : false;
+    } catch {
+      return false;
+    }
+  });
 
-    const completedSound = new Audio("/bell-transition-141421.mp3")
-    let [isUserLogin,setIsUserLogin] = useState(() => {
-        let status = localStorage.getItem("isUserLogin");
-        try{
-            return status ? JSON.parse(status) : false;
-        } catch {
-            console.log("invalid json in localstorage",error);
-            return false;
-        }
+  // Save login info
+  useEffect(() => {
+    localStorage.setItem("isUserLogin", JSON.stringify(isUserLogin));
+    localStorage.setItem("userEmail", UserEmail);
+  }, [isUserLogin, UserEmail]);
+
+  // MAIN TODO LIST
+  const [todoList, setTodoList] = useState([]);
+
+
+// Fetch todos when logging in
+const fetchTodos = async () => {
+  if (!UserEmail) return;
+
+  try {
+    const response = await axios.get("http://localhost:5000/api/todos", {
+      params: { email: UserEmail }
     });
 
-    useEffect(() => {
-      localStorage.setItem("isUserLogin",JSON.stringify(isUserLogin))
-    },[isUserLogin])
+    setTodoList(response.data);
+  } catch (error) {
+    console.log("Error fetching todos:", error);
+  }
+};
 
+useEffect(() => {
+  if (!UserEmail) return;
+  fetchTodos();
+}, [UserEmail]);
 
+  // FILTERED DISPLAY LIST
+  const [displayCurrentTodosFilter, setDisplayCurrentTodosFilter] = useState([]);
 
-    // Getting Todo Datas From localStorage
-    const [todoList, setTodoList] = useState(() => {
-    const saved = localStorage.getItem("AllTodoData");
-        try {
-            return saved
-              ? JSON.parse(saved)
-              : [{id:1213123,todoTitle :"demo",todoCompleted:false,pinTodo:false}];
-        }catch (error) {
-            console.error("Invalid JSON in localStorage:", error);
-            return [{id:1213123,todoTitle :"demo",todoCompleted:false,pinTodo:false}];
-        }     
-    });
-    
-    // Storing the todolist when the todo list are added
-    useEffect(() => {
-        if(todoList.length === 0) return;
-         localStorage.setItem("AllTodoData",JSON.stringify(todoList));
-    },[todoList])
+  useEffect(() => {
+    setDisplayCurrentTodosFilter(todoList);
+  }, [todoList]);
 
-    useEffect(() => {
-        setDisplayCurrentTodosFilter(todoList)
-    },[todoList])
+  const [pinedTodoList, setPinedTodoList] = useState([]);
+  const [notCompletedTodoList, setNotCompletedTodoList] = useState([]);
+  const [completedTodoList, setCompletedTodoList] = useState([]);
+  const [whichFilter, setWhichFilter] = useState("all");
 
+  return (
+    <TodoContext.Provider
+      value={{
+        todoList,
+        setTodoList,
+        completedSound,
+        fetchTodos,
+        // filters
+        displayCurrentTodosFilter,
+        setDisplayCurrentTodosFilter,
+        pinedTodoList,
+        setPinedTodoList,
+        notCompletedTodoList,
+        setNotCompletedTodoList,
+        completedTodoList,
+        setCompletedTodoList,
+        whichFilter,
+        setWhichFilter,
 
-    const [displayCurrentTodosFilter,setDisplayCurrentTodosFilter] = useState(todoList);
-    
-    const [pinedTodoList,setPinedTodoList] = useState([]);
-    const [notCompletedTodoList,setNotCompletedTodoList] = useState([]);
-    const [completedTodoList,setCompletedTodoList] = useState([]);
-
-    const [whichFilter,setWhichFilter] = useState("all");
-
-    return (
-         <TodoContext.Provider value={{todoList,setTodoList,completedSound,displayCurrentTodosFilter,setDisplayCurrentTodosFilter,pinedTodoList,setPinedTodoList,notCompletedTodoList,setNotCompletedTodoList,completedTodoList,setCompletedTodoList,whichFilter,setWhichFilter,isUserLogin,setIsUserLogin}} >
-            {children}
-        </TodoContext.Provider>
-    )
-}
+        // user
+        isUserLogin,
+        setIsUserLogin,
+        UserEmail,
+        setUserEmail,
+      }}
+    >
+      {children}
+    </TodoContext.Provider>
+  );
+};
 
 export const UseTodoContext = () => useContext(TodoContext);

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate , useNavigate} from 'react-router-dom'
 import { UseTodoContext } from '../context/TodoContext'
+import axios from 'axios'
 
 
 
@@ -11,31 +12,24 @@ const Login = () => {
 
  const [emailValue,setEmailValue] = useState("")
   const [passwordValue,setPasswordValue] = useState("")
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  const email_value = document.querySelector("#email-value");
-  const submitHandler = (e) => {
-      e.preventDefault();
-      let isSignedup = false;
 
-      if (!emailRegex.test(emailValue)){
-        document.querySelector(".email-error").style.display="initial";
-        isSignedup = false;
+
+  const submitHandler = async (e) => {
+      e.preventDefault();
+
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/login",{email:emailValue,password:passwordValue});
+      console.log("Server response:",response.data);
+      if(response.data === "Login Successful"){
+        setIsUserLogin(true);
+        navigate("/");
       } else {
-        document.querySelector(".email-error").style.display="none";
-        isSignedup = true;
+        alert(response.data);
       }
-      if (!passwordRegex.test(passwordValue)){
-        document.querySelector(".password-error").style.display="initial";
-        isSignedup = false;
-      } else {
-        document.querySelector(".password-error").style.display="none";
-        isSignedup = true;
-      }
-      // console.log(emailValue)
-      // console.log(passwordValue)
-    if(isSignedup) {
-          setIsUserLogin(true);
+    } catch (error) {
+        console.log("Axios login error : ",error);
+        alert("Something went wrong!");
     }
     setEmailValue("")
     setPasswordValue("")

@@ -3,10 +3,9 @@ const router = express.Router();
 
 const Todo = require('../models/todos');
 
-router.get("/",(req,res) => {
-    res.send("hello from todo");
-})
-
+// router.get("/",async(req,res) => {
+    
+// })
 
 
 module.exports = router;

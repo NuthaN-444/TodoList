@@ -4,10 +4,6 @@ const router = express.Router();
 const Login = require('../models/user');
 
 
-router.get("/",(req,res) => {
-    res.send("from login")
-});
-
 router.post("/",async(req,res) => {
     const {email,password} = req.body;
     try {
@@ -19,5 +15,6 @@ router.post("/",async(req,res) => {
         res.json("message",error);
     }
 });
+
 
 module.exports = router;

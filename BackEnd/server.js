@@ -20,11 +20,11 @@ app.get("/",(req,res) => {
     res.send("hello");
 });
 
-app.use("/signup",signup);
+app.use("/api/signup",signup);
 
-app.use("/login",login);
+app.use("/api/login",login);
 
-app.use("/todos",todos);
+app.use("/api/todos",todos);
 
 
 app.listen(port,() => {

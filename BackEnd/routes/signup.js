@@ -11,21 +11,21 @@ router.get("/",async(req,res) => {
 //     res.json(message,"from /signup/:",req.params.id);
 // });
 
-router.get("/all/" , async(req,res) => {
-    try {
-        const CreatingUser = await Signup.find({});
-        res.json(CreatingUser);
-    } catch (error) {
-        console.log("Error",error);
-    }
-});
+// router.get("/all/" , async(req,res) => {
+//     try {
+//         const CreatingUser = await Signup.find({});
+//         res.json(CreatingUser);
+//     } catch (error) {
+//         console.log("Error",error);
+//     }
+// });
 
 //creating
 router.post("/" , async(req,res) => {
     const {name,email,password} = req.body;
     try {
         const CreatingUser = await Signup.create({name,email,password});
-        res.json(CreatingUser);
+        res.json("Signup Successful");
     } catch (error) {
         console.log("Error",error);
     }

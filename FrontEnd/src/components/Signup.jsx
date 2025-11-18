@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Navigate, useNavigate} from 'react-router-dom'
 import { UseTodoContext } from '../context/TodoContext'
+import axios from 'axios';
 
 
 
@@ -15,21 +16,14 @@ const Signup = () => {
   const [userValue,setUserValue] = useState("")
   const [confirmPasswordValue,setConfirmPasswordValue] = useState("")
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const email_value = document.querySelector("#email-value");
-  const submitHandler = (e) => {
+
+
+
+  const submitHandler = async(e) => {
     e.preventDefault();
     let isSignedup = false;
     
-    //Password Check pattern
-    if (!passwordRegex.test(passwordValue)){
-      document.querySelector(".password-error").style.display="initial";
-      isSignedup = false;
-    } else {
-      document.querySelector(".password-error").style.display="none";
-      isSignedup = true;
-    }
-
 
     //confirm Password Check pattern
     if(passwordValue!==confirmPasswordValue){
@@ -40,8 +34,6 @@ const Signup = () => {
       isSignedup = true;
     }
 
-
-
     //Email Check pattern
     if (!emailRegex.test(emailValue)){
       document.querySelector(".email-error").style.display="initial";
@@ -51,13 +43,20 @@ const Signup = () => {
       isSignedup = true;
     }
 
-    if(isSignedup) {
-          setIsUserLogin(true);
+    if(!isSignedup) return;
+
+    try{
+      const response = await axios.post("http://localhost:5000/api/signup",{name:userValue,email:emailValue,password:passwordValue});
+      console.log("Server response:",response.data);
+      if(response.data === "Signup Successful"){
+        setIsUserLogin(true);
+        navigate("/");
+      } else {
+        alert(response.data);
+      }
+    } catch (error) {
+      console.log("axios error : ",error);
     }
-    // console.log(userValue);
-    // console.log(passwordValue);
-    // console.log(confirmPasswordValue);
-    // console.log(emailValue);
 
     setUserValue("")
     setPasswordValue("")

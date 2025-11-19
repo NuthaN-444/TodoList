@@ -2,40 +2,76 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todos');
 
-
-
-router.get("/",async(req,res) => {
-    const userEmail = req.query.email; 
-    try{
-        const todos = await Todo.find({ email: userEmail });
-        res.json(todos);
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-
-
-router.post("/",async(req,res) => {
-    const {todoTitle,todoCompleted,pinTodo,email} = req.body;
-    try {
-        const addingTodo = await Todo.create({todoTitle,todoCompleted,pinTodo,email});
-        res.json("Successfully added");
-    } catch(error) {
-        console.log(error);
-    }
-});
-
-router.delete("/", async (req, res) => {
+// GET all todos for a user
+router.get("/", async (req, res) => {
   const userEmail = req.query.email;
   try {
-    await Todo.deleteMany({ email: userEmail }); // correct function
+    const todos = await Todo.find({ email: userEmail });
+    res.json(todos);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// ADD new todo
+router.post("/", async (req, res) => {
+  const { todoTitle, todoCompleted, pinTodo, email } = req.body;
+
+  try {
+    await Todo.create({ todoTitle, todoCompleted, pinTodo, email });
+    res.json("Successfully added");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// UPDATE TODO (pin, completed, etc.)
+router.put("/:id", async (req, res) => {
+  const todoId = req.params.id;
+
+  try {
+    const updated = await Todo.findByIdAndUpdate(todoId, req.body, { new: true });
+
+    if (!updated) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    res.json(updated);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Update failed" });
+  }
+});
+
+// DELETE SINGLE TODO
+router.delete("/:id", async (req, res) => {
+  const todoId = req.params.id;
+
+  try {
+    const deleted = await Todo.findByIdAndDelete(todoId);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    res.json({ message: "Todo deleted", deleted });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Delete failed" });
+  }
+});
+
+// DELETE ALL TODOS for a user
+router.delete("/", async (req, res) => {
+  const userEmail = req.query.email;
+
+  try {
+    await Todo.deleteMany({ email: userEmail });
     res.json({ message: "All todos deleted for user: " + userEmail });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Server error" });
   }
 });
-
 
 module.exports = router;

@@ -26,7 +26,6 @@ const Login = () => {
         setUserEmail(emailValue);  
         navigate("/");
         fetchTodos();
-        window.location.reload();
       } else {
         alert(response.data);
       }

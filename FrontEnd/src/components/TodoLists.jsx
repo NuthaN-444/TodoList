@@ -42,6 +42,7 @@ const TodoLists = () => {
 
     setTodoList(updatedTodos);
 
+    
     // Update DB
     const todo = updatedTodos.find((t) => t._id === _id);
     await axios.put(`http://localhost:5000/api/todos/${_id}`, {

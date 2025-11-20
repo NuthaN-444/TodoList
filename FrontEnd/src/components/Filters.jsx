@@ -11,13 +11,13 @@ const Filters = () => {
 
 
   const updateTheTodo = (filter,name) => {
-    // displaying Pined Todo
+
         setPinedTodoList(todoList.filter((item) => item.pinTodo));
     
-    // displaying Not Completed
+
         setNotCompletedTodoList(todoList.filter((item) => !item.todoCompleted));
 
-    // displaying Completed
+
         setCompletedTodoList(todoList.filter((item) => item.todoCompleted));
 
       setWhichFilter(name);

@@ -53,14 +53,13 @@ const Signup = () => {
       if (response.data === "Signup Successful") {
         localStorage.setItem("userEmail", emailValue);
 
-        setUserEmail(emailValue);   // ✅ FIX — update context email
+        setUserEmail(emailValue);   
         setIsUserLogin(true);
 
         navigate("/");
 
-        // Small delay so context updates before fetching
         setTimeout(() => {
-          fetchTodos();             // ✅ fetch using correct email
+          fetchTodos();
         }, 50);
         
       } else {

@@ -28,9 +28,7 @@ const TodoLists = () => {
     setCompletedTodoList(todoList.filter((item) => item.todoCompleted));
   }, [todoList]);
 
-  // ------------------------------
-  // MARK TODO COMPLETED / UNCOMPLETED
-  // ------------------------------
+  // MARK TODO COMPLETED/INCOMPLETED
   const todoCompletedHandle = async (_id) => {
     completedSound.play();
 
@@ -50,9 +48,9 @@ const TodoLists = () => {
     });
   };
 
-  // ------------------------------
+
+
   // CLEAR ALL TODOS
-  // ------------------------------
   const clearAllTodos = async () => {
     let confirm = prompt("Want To Delete All ? Type Y ");
 
@@ -63,9 +61,8 @@ const TodoLists = () => {
     }
   };
 
-  // ------------------------------
+
   // PIN / UNPIN TODO
-  // ------------------------------
   const pinAndUnpin = async (_id) => {
     const updatedTodos = todoList.map((item) =>
       item._id === _id ? { ...item, pinTodo: !item.pinTodo } : item
@@ -79,9 +76,7 @@ const TodoLists = () => {
     });
   };
 
-  // ------------------------------
   // SPEAKER
-  // ------------------------------
   const speakerTheTitle = (title) => {
     const speech = new SpeechSynthesisUtterance(title);
     speech.lang = "en-US";
@@ -89,9 +84,9 @@ const TodoLists = () => {
     window.speechSynthesis.speak(speech);
   };
 
-  // ------------------------------
+
+
   // DELETE SINGLE TODO
-  // ------------------------------
   const deleteTodo = async (_id) => {
     const updated = todoList.filter((item) => item._id !== _id);
     setTodoList(updated);
@@ -135,21 +130,19 @@ const TodoLists = () => {
                   {item.todoCompleted ? "✅" : "⏳"}
                 </span>
 
-                {/* PIN */}
                 <i
                   title="pin"
                   className="fa-solid fa-thumbtack Pin-btn btns-in-todo"
                   onClick={() => pinAndUnpin(item._id)}
                 ></i>
 
-                {/* SPEAKER */}
                 <i
                   title="speech"
                   className="fa-solid fa-volume-high Speaker-btn btns-in-todo"
                   onClick={() => speakerTheTitle(item.todoTitle)}
                 ></i>
 
-                {/* DELETE */}
+
                 <i
                   className="fa-solid fa-trash Delete-btn btns-in-todo"
                   title="Delete"

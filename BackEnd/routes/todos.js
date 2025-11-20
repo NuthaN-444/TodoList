@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todos');
 
-// GET all todos for a user
+// fetching todos from db
 router.get("/", async (req, res) => {
   const userEmail = req.query.email;
   try {
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ADD new todo
+// adding new todo
 router.post("/", async (req, res) => {
   const { todoTitle, todoCompleted, pinTodo, email } = req.body;
 
@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// UPDATE TODO (pin, completed, etc.)
+// updating todo
 router.put("/:id", async (req, res) => {
   const todoId = req.params.id;
 
@@ -43,7 +43,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE SINGLE TODO
+// deleting single todo
 router.delete("/:id", async (req, res) => {
   const todoId = req.params.id;
 
@@ -61,7 +61,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// DELETE ALL TODOS for a user
+// deleting all todos
 router.delete("/", async (req, res) => {
   const userEmail = req.query.email;
 

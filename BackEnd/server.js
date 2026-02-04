@@ -10,6 +10,8 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", (req, res) => res.send("OK"));
+
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const todos = require('./routes/todos')

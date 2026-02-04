@@ -43,7 +43,7 @@ const AddingTodo = () => {
       <button className='Log-out' onClick={() => {
         setIsUserLogin(false)
         setUserEmail(null);
-        setTodoList(null)
+        setTodoList(0)
         }}>Log out</button>
       <div className='Adding-Todo-List-Div'>
       <input type="text" placeholder='Write Todo' value={todoTitle} onChange={(e) => setTodoTitle(e.target.value)}/>

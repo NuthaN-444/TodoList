@@ -11,9 +11,7 @@ const Filters = () => {
 
 
   const updateTheTodo = (filter,name) => {
-      if(todoList == null){
-        return;
-      }
+
         setPinedTodoList(todoList.filter((item) => item.pinTodo));
     
 

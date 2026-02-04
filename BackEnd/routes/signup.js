@@ -8,7 +8,7 @@ router.get("/",async(req,res) => {
 });
 
 
-//creating
+//creating user account
 router.post("/" , async(req,res) => {
     const {name,email,password} = req.body;
     try {
@@ -21,7 +21,7 @@ router.post("/" , async(req,res) => {
 
 
 
-// updating
+// updating user account
 router.put("/:email" , async(req,res) => {
     const {name,email,password} = req.body;
     try {

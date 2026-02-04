@@ -5,15 +5,16 @@ const connectDB  = require('./db/db');
 const app = express();
 const port = process.env.PORT || 5000;
 
+connectDB();
+
+app.use(cors());
+app.use(express.json());
 
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const todos = require('./routes/todos')
 
-connectDB();
 
-app.use(cors());
-app.use(express.json());
 
 
 app.get("/",(req,res) => {

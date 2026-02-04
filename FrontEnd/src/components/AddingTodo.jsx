@@ -14,7 +14,7 @@ const AddingTodo = () => {
         
 
         try{
-          const response = await axios.post("http://localhost:5000/api/todos",{todoTitle,todoCompleted:false,pinTodo:false,email:UserEmail});
+          const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/todos`,{todoTitle,todoCompleted:false,pinTodo:false,email:UserEmail});
           fetchTodos();
           console.log("Server response:",response.data);
         } catch (error) {

@@ -43,7 +43,7 @@ const TodoLists = () => {
     
     // Update DB
     const todo = updatedTodos.find((t) => t._id === _id);
-    await axios.put(`http://localhost:5000/api/todos/${_id}`, {
+    await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${_id}`, {
       todoCompleted: todo.todoCompleted,
     });
   };
@@ -57,7 +57,7 @@ const TodoLists = () => {
     if (confirm?.toLowerCase() === "y") {
       setTodoList([]);
       // Delete from DB
-      await axios.delete("http://localhost:5000/api/todos",{params:{email:UserEmail}});
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/todos`,{params:{email:UserEmail}});
     }
   };
 
@@ -71,7 +71,7 @@ const TodoLists = () => {
     setTodoList(updatedTodos);
 
     const todo = updatedTodos.find((t) => t._id === _id);
-    await axios.put(`http://localhost:5000/api/todos/${_id}`, {
+    await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${_id}`, {
       pinTodo: todo.pinTodo,
     });
   };
@@ -91,7 +91,7 @@ const TodoLists = () => {
     const updated = todoList.filter((item) => item._id !== _id);
     setTodoList(updated);
 
-    await axios.delete(`http://localhost:5000/api/todos/${_id}`);
+    await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${_id}`);
   };
 
   return (

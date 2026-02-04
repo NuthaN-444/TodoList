@@ -22,10 +22,11 @@ const TodoLists = () => {
   // Scroll + Update Filter Lists
   useEffect(() => {
     divRef.current?.scrollIntoView({ behavior: "smooth" });
-
-    setPinedTodoList(todoList.filter((item) => item.pinTodo));
-    setNotCompletedTodoList(todoList.filter((item) => !item.todoCompleted));
-    setCompletedTodoList(todoList.filter((item) => item.todoCompleted));
+    if(todoList > 0) {
+      setPinedTodoList(todoList.filter((item) => item.pinTodo));
+      setNotCompletedTodoList(todoList.filter((item) => !item.todoCompleted));
+      setCompletedTodoList(todoList.filter((item) => item.todoCompleted));
+    }
   }, [todoList]);
 
   // MARK TODO COMPLETED/INCOMPLETED

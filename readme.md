@@ -48,8 +48,8 @@
   <ul>
     <li>React (Vite)</li>
   </ul>
+  <h3>dependencies(frontend)</h3>
     <ul>
-        dependencies
         <li>axios</li>
         <li>browser-router</li>
         <li>react</li>
@@ -63,8 +63,8 @@
     <li>MongoDB Atlas</li>
     <li>Mongoose</li>
   </ul>
+    <h3>dependencies(backend)</h3>
       <ul>
-        dependencies
         <li>express</li>
         <li>nodemon</li>
         <li>cors</li>

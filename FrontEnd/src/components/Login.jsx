@@ -20,8 +20,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`,{email:emailValue,password:passwordValue});
-      console.log("Server response:",response.data);
-      if(response.data.message === "Login Successful"){
+      if(response.data === "Login Successful"){
         setIsUserLogin(true);
         setUserEmail(emailValue);  
         navigate("/");

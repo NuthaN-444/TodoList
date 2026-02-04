@@ -15,7 +15,7 @@ router.post("/" , async(req,res) => {
         const CreatingUser = await Signup.create({name,email,password});
         res.json("Signup Successful");
     } catch (error) {
-        console.log("Error",error);
+        res.json({message:error});
     }
 });
 
@@ -28,7 +28,7 @@ router.put("/:email" , async(req,res) => {
         const UpdatingUser = await Signup.findOneAndUpdate({email:req.params.email},{$set :{name,email,password}},{new:true});
         res.json(UpdatingUser);
     } catch (error) {
-        console.log("Error",error);
+         res.json({message:error});
     }
 });
 
@@ -39,7 +39,7 @@ router.delete("/:email" , async(req,res) => {
         const DeletingUser = await Signup.findOneAndDelete({email:req.params.email});
         res.json(DeletingUser);
     } catch (error) {
-        console.log("Error",error);
+         res.json({message:error});
     }
 });
 

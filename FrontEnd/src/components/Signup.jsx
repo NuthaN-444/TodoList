@@ -49,7 +49,7 @@ const Signup = () => {
       );
 
 
-      if (response.data === "Signup Successful") {
+      if (response.data.message === "Signup Successful") {
         localStorage.setItem("userEmail", emailValue);
 
         setUserEmail(emailValue);   
@@ -65,7 +65,7 @@ const Signup = () => {
         alert(response.data.message);
       }
     } catch (error) {
-      console.log("axios error : ", error);
+      alert("axios error : ", error);
     }
 
     setUserValue("");

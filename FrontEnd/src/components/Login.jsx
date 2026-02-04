@@ -30,7 +30,6 @@ const Login = () => {
         alert(response.data);
       }
     } catch (error) {
-        console.log("Axios login error : ",error);
         alert("Something went wrong!");
     }
     setEmailValue("")

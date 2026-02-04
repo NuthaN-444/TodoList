@@ -11,8 +11,8 @@
   <ul>
     <li>
       Frontend:
-      <a href="https://todo-add-work-here.netlify.app/" target="_blank">
-        https://todo-add-work-here.netlify.app/
+      <a href="https://todo-list-amber-three-37.vercel.app/" target="_blank">
+        https://todo-list-amber-three-37.vercel.app/
       </a>
     </li>
     <li>

@@ -8,7 +8,7 @@ const Signup = () => {
   const {
     isUserLogin,
     setIsUserLogin,
-    setUserEmail,        // ✅ IMPORTANT FIX
+    setUserEmail,      
     fetchTodos
   } = UseTodoContext();
 
@@ -48,7 +48,6 @@ const Signup = () => {
         { name: userValue, email: emailValue, password: passwordValue }
       );
 
-      console.log("Server response:", response.data.message);
 
       if (response.data === "Signup Successful") {
         localStorage.setItem("userEmail", emailValue);

@@ -23,9 +23,10 @@ const Signup = () => {
     let isSignedup = false;
 
     //confirm Password Check pattern
-    if (passwordValue !== confirmPasswordValue) {
+    if (passwordValue != confirmPasswordValue) {
       document.querySelector(".confirm-password-error").style.display = "initial";
       isSignedup = false;
+      return;
     } else {
       document.querySelector(".confirm-password-error").style.display = "none";
       isSignedup = true;

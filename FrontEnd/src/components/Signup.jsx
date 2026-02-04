@@ -91,7 +91,7 @@ const Signup = () => {
                   value={userValue}
                   onChange={(e) => setUserValue(e.target.value)}
                   type="text"
-                  className="input-design"
+                  className="input-design" required
                 />
               </div>
               <br />
@@ -103,7 +103,7 @@ const Signup = () => {
                   value={passwordValue}
                   onChange={(e) => setPasswordValue(e.target.value)}
                   type="password"
-                  className="input-design"
+                  className="input-design" required
                 />
                 <p className="password-error">Incorrect password</p>
               </div>
@@ -115,7 +115,7 @@ const Signup = () => {
                   value={confirmPasswordValue}
                   onChange={(e) => setConfirmPasswordValue(e.target.value)}
                   type="password"
-                  className="input-design"
+                  className="input-design" required
                 />
                 <p className="confirm-password-error">
                   The passwords you entered do not match.
@@ -130,7 +130,7 @@ const Signup = () => {
                   value={emailValue}
                   onChange={(e) => setEmailValue(e.target.value)}
                   type="email"
-                  className="input-design"
+                  className="input-design" required
                 />
                 <p className="email-error">Enter a valid email</p>
               </div>
